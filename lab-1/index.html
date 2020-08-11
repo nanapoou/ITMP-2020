@@ -9,20 +9,41 @@
 <body class="paper">
 	<div id="app">
 		<input type="number" v-model = 'n'>
+		<input type="number" v-model = 'r'>
 		<div class="space"></div>
 		<h3>สูตรคูณแม่ {{n}}</h3>
-		<h4 v-for='i in 12'>{{n}} x {{i}} = {{x(i)}}</h4>
+		<h5>แม่ก่อนหน้า -> แม่ {{before_n}}</h5>
+		<h4 id='jotaro' v-for='i in rowcount(r)'>{{n}} x {{i}} = {{x(i)}}</h4>
 	</div>
 
 	<script>
 		let app = new Vue({
 			el: '#app',
 			data: {
-				n: 2
+				n: 2,
+				r: 1,
+				before_n:1
 			},
 			methods: {
 				x: function(row){
 					return this.n*row
+				},
+				rowcount: function(a){
+					return parseInt(a)
+				},
+				computed :{
+				sum: function() {
+					let ans = 0;
+					for (let num = 0;num < this.r;num++){
+						ans += this.n * (num + 1)
+					}
+					return ans
+			}
+				}
+			},
+			watch: {
+				n: function(before,after){
+					this.before_n = after
 				}
 			}
 			
