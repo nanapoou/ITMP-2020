@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Lab - Multimedia Programming 2563 ITKMITL</title>
 	<link rel=stylesheet href="../src/reset.css">
 	<link rel=stylesheet href="lab.css">
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
+
 <body class="paper">
 	<div id="app">
-		<input type="number" v-model = 'n'>
-		<input type="number" v-model = 'r'>
+		<input type="number" v-model='n'>
+		<input type="number" v-model='r'>
 		<div class="space"></div>
-		<h3>สูตรคูณแม่ {{n}}</h3>
-		<h5>แม่ก่อนหน้า -> แม่ {{before_n}}</h5>
-		<h4 id='jotaro' v-for='i in rowcount(r)'>{{n}} x {{i}} = {{x(i)}}</h4>
+		<center>
+			<h3>สูตรคูณแม่ {{n}}</h3>
+			<h5>แม่ก่อนหน้า -> แม่ {{before_n}}</h5>
+			<h4 v-for='i in rowcount(r)'>{{n}} x {{i}} = {{x(i)}}</h4>
+			<h1>ผลรวมของสูตรคูณ = {{sum}}</h1>
+		</center>
 	</div>
 
 	<script>
@@ -21,33 +26,35 @@
 			el: '#app',
 			data: {
 				n: 2,
-				r: 1,
-				before_n:1
+				r: 2,
+				before_n: 1,
 			},
 			methods: {
-				x: function(row){
-					return this.n*row
+				x: function (row) {
+					return this.n * row
 				},
-				rowcount: function(a){
+				rowcount: function (a) {
 					return parseInt(a)
-				},
-				computed :{
-				sum: function() {
-					let ans = 0;
-					for (let num = 0;num < this.r;num++){
-						ans += this.n * (num + 1)
-					}
-					return ans
-			}
 				}
 			},
+			computed: {
+				sum: function () {
+				    ans = 0
+					for (let j = 1; j <= this.r; j++) {
+						ans = ans+(this.n * j)
+					}
+					return ans
+				}
+			},
+
 			watch: {
-				n: function(before,after){
+				n: function (before, after) {
 					this.before_n = after
 				}
-			}
-			
+			},
+
 		})
 	</script>
 </body>
+
 </html>
