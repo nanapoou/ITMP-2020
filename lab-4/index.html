@@ -55,6 +55,7 @@
 			methods: {
 				check: function(e){
 					console.log(e)
+					if(this.time > 0){
 					if (e == this.pick) {
 						app.correct()
 						this.score += 1
@@ -64,6 +65,7 @@
 						this.score -= 1
 						this.time -= 2
 					}
+				}
 				},
 				correct: function(){
 					this.row = rand(2,6)
