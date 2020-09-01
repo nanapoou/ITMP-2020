@@ -58,7 +58,11 @@
 					if (e == this.pick) {
 						app.correct()
 						this.score += 1
-						this.time += 3
+						this.time += 1
+					}
+					else{
+						this.score -= 1
+						this.time -= 2
 					}
 				},
 				correct: function(){
