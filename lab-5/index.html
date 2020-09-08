@@ -10,7 +10,7 @@
 	<div id="canvas">
 		<section id="canvas_header">
 			<div>
-				คุณแยกผลไม้ได้แล้ว {{score}} ชิ้น
+				คุณแยกผลไม้ไปได้แล้ว {{score}} ชิ้น
 			</div>
 		</section>
 		<section id="canvas_main" 
@@ -78,40 +78,40 @@
 			watch:{
 				turn: function(){
 					for(let f in this.fruits){
-						//ปุ่มtoggle
+						
 						if (this.fruits[f].pst == 10){
 							if(this.isRightArrow == 1){
-								this.fruits[f].step = 3 //เดิน3step
+								this.fruits[f].step = 3 
 							}else{
 								this.fruits[f].step = 1
 							}
 						}
 
-						//คิดคะแนน
+					
 						if (this.fruits[f].pst == 11 || this.fruits[f].pst == 13) {
-							//เมื่อถูก
+							
 							if (this.fruits[f].pst == this.fruits[f].type && this.fruits[f].run) {
 								this.score ++
 							}
-							//เมื่อผิด
+							
 							else if (this.fruits[f].pst != this.fruits[f].type && this.fruits[f].run) {
-								this.play = false //จบเกม
+								this.play = false 
 							}
 						}
 
-						//หยุดเขยับเมื่อถึงจุด
+						
 						if (this.fruits[f].pst == 12 || this.fruits[f].pst == 16) {
 							this.fruits[f].run = false
 						}
 
-						//การขยับของfruit
+						
 						let run = this.fruits[f].run
 						if (run) {
 							this.fruits[f].pst = this.fruits[f].pst + this.fruits[f].step //ขยับตาม step
 						}
 
 					}
-					//สร้างfruitใหม่
+					
 					let spawn = rand(0,1)
 					if(spawn == 1){
 						newfruit = rand(0,1)
